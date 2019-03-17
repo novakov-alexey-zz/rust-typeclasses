@@ -1,0 +1,7 @@
+[package]
+name = "rust-typeclasses"
+version = "0.1.0"
+authors = ["aa"]
+edition = "2018"
+
+[dependencies]
