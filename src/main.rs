@@ -1,3 +1,5 @@
+use rust_typeclasses::tc::*;
+
 pub trait Formatter<T> {
     fn fmt(&self) -> String;
 }
@@ -26,13 +28,14 @@ fn fmt<T>(t: T) -> String where T: Formatter<T> {
 
 fn main() {
     let x = fmt("Hello, world!");
-    let i = fmt(4);
-    let ii = fmt(4i32);
-    let ints = fmt(vec![1, 2, 3]);
-    //let f: String = fmt(4.0);
+    let i = 4.fmt();
+    let ints = vec![1, 2, 3].fmt();
+//    let floats = fmt(vec![1.0, 2.0, 3.0]);
+//    let f: String = fmt(4.0);
 
+    let s= fmt2("fmt 2");
+    println!("{}", s);
     println!("{}", x);
     println!("{}", i);
-    println!("{}", ii);
     println!("{}", ints)
 }
