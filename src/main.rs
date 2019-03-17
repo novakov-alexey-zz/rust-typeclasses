@@ -14,6 +14,12 @@ impl Formatter<Self> for i32 {
     }
 }
 
+impl<T: Formatter<T>> Formatter<Self> for Vec<T> {
+    fn fmt(&self) -> String {
+        self.iter().map(|e| e.fmt()).collect::<Vec<_>>().join(" :: ")
+    }
+}
+
 fn fmt<T>(t: T) -> String where T: Formatter<T> {
     t.fmt()
 }
@@ -21,10 +27,12 @@ fn fmt<T>(t: T) -> String where T: Formatter<T> {
 fn main() {
     let x = fmt("Hello, world!");
     let i = fmt(4);
-    let ii = 4.fmt();
+    let ii = fmt(4i32);
+    let ints = fmt(vec![1, 2, 3]);
     //let f: String = fmt(4.0);
 
     println!("{}", x);
     println!("{}", i);
     println!("{}", ii);
+    println!("{}", ints)
 }
